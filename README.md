@@ -1,4 +1,4 @@
-# DirectX Texture Converter 2017
+# DirectX Texture Converter 2017 Unofficial Backup
 <p>This is more or less just a backup of Microsoft's Texture Converter from 2017 that is needed by many games of the timeframe (DX9-DX12). I am not the author of these binaries, I am simply preserving them to aid modders in the modding of Space Engineers or any other games.
 <p> ~
 # Sources:
