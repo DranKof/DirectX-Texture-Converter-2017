@@ -1,17 +1,25 @@
 # DirectX Texture Converter 2017
  This is more or less just a backup of Microsoft's Texture Converter from 2017 that is needed by many games of the timeframe (DX9-DX12).
- I am not the author of this binary, I am simply preserving this to aid in the modding of Space Engineers.
+ I am not the author of these binaries, I am simply preserving them to aid modders in the modding of Space Engineers or any other games.
 
+# Sources:
 The original github where they keep the most updated version is here:
 https://github.com/microsoft/DirectXTex/releases
 Related documentation on the most up-to-date version can be found here:
 https://github.com/Microsoft/DirectXTex/wiki/Texconv
 
+The primary backups (dated 2017-11-26) of texconv.exe and texassemble.exe came from Keen's Space Engineers directory in Steam:
+<img src="https://github.com/DranKof/DirectX-Texture-Converter-2017/blob/master/Finding%20TexConv.png">
+The primary backup (dated 2017-09-22) of texdiag.exe caome from here:
+https://github.com/microsoft/DirectXTex/releases/tag/sept2017
+The secondary backups (the ones I've tested the most, dated 2017-07-26) came from:
+https://github.com/microsoft/DirectXTex/releases/tag/jul2017
+
 My Guide on using this to make and edit DDS hud icons for Space Engineers is here:
 https://steamcommunity.com/sharedfiles/filedetails/?id=1116386590
 
 ------------------------------------
-# texconv.exe  "v2017" Run Help
+# Syntax for texconv.exe
 
 Microsoft (R) DirectX Texture Converter (DirectXTex version)
 Copyright (C) Microsoft Corp. All rights reserved.
@@ -103,6 +111,120 @@ Usage: texconv <options> <files>
       2: VID:1414, PID:008C - Microsoft Basic Render Driver
 
 ------------------------------------
-# Useful Sample Command
-
+# Useful Batch Script (convertTextures.bat)
 texconv -f BC7_UNORM_SRGB -if LINEAR -sRGB -y -o TexturesOut -pmalpha Textures\*.dds
+ren TexturesOut\*.DDS *.dds
+pause
+
+------------------------------------
+# texdiag.exe
+Microsoft (R) DirectX Texture Diagnostic Tool
+Copyright (C) Microsoft Corp. All rights reserved.
+
+Usage: texdiag <command> <options> <files>
+
+   info                Output image metadata
+   analyze             Analyze and summarize image information
+   compare             Compare two images with MSE error metric
+   diff                Generate difference image from two images
+   dumpbc              Dump out compressed blocks (DDS BC only)
+
+   -r                  wildcard filename search is recursive
+   -if <filter>        image filtering
+
+                       (DDS input only)
+   -t{u|f}             TYPELESS format is treated as UNORM or FLOAT
+   -dword              Use DWORD instead of BYTE alignment
+   -badtails           Fix for older DXTn with bad mipchain tails
+   -xlum               expand legacy L8, L16, and A8P8 formats
+
+                       (diff only)
+   -f <format>         format
+   -o <filename>       output filename
+   -y                  overwrite existing output file (if any)
+
+                       (dumpbc only)
+   -targetx <num>      dump pixels at location x (defaults to all)
+   -targety <num>      dump pixels at location y (defaults to all)
+
+   -nologo             suppress copyright message
+   -flist <filename>   use text file with a list of input files (one per line)
+
+   <format>: R32G32B32A32_FLOAT R32G32B32A32_UINT R32G32B32A32_SINT
+      R32G32B32_FLOAT R32G32B32_UINT R32G32B32_SINT R16G16B16A16_FLOAT
+      R16G16B16A16_UNORM R16G16B16A16_UINT R16G16B16A16_SNORM
+      R16G16B16A16_SINT R32G32_FLOAT R32G32_UINT R32G32_SINT
+      R10G10B10A2_UNORM R10G10B10A2_UINT R11G11B10_FLOAT R8G8B8A8_UNORM
+      R8G8B8A8_UNORM_SRGB R8G8B8A8_UINT R8G8B8A8_SNORM R8G8B8A8_SINT
+      R16G16_FLOAT R16G16_UNORM R16G16_UINT R16G16_SNORM R16G16_SINT
+      R32_FLOAT R32_UINT R32_SINT R8G8_UNORM R8G8_UINT R8G8_SNORM
+      R8G8_SINT R16_FLOAT R16_UNORM R16_UINT R16_SNORM R16_SINT
+      R8_UNORM R8_UINT R8_SNORM R8_SINT A8_UNORM R9G9B9E5_SHAREDEXP
+      R8G8_B8G8_UNORM G8R8_G8B8_UNORM B5G6R5_UNORM B5G5R5A1_UNORM
+      B8G8R8A8_UNORM B8G8R8X8_UNORM R10G10B10_XR_BIAS_A2_UNORM
+      B8G8R8A8_UNORM_SRGB B8G8R8X8_UNORM_SRGB AYUV Y410 Y416 YUY2 Y210
+      Y216 B4G4R4A4_UNORM
+
+   <filter>: POINT LINEAR CUBIC FANT BOX TRIANGLE POINT_DITHER
+      LINEAR_DITHER CUBIC_DITHER FANT_DITHER BOX_DITHER TRIANGLE_DITHER
+      POINT_DITHER_DIFFUSION LINEAR_DITHER_DIFFUSION CUBIC_DITHER_DIFFUSION
+      FANT_DITHER_DIFFUSION BOX_DITHER_DIFFUSION TRIANGLE_DITHER_DIFFUSION
+
+------------------------------------
+# Useful Batch Script (analyze.bat)
+texdiag info *.dds
+texdiag info Textures\*.dds
+texdiag info TexturesOut\*.dds
+pause
+
+------------------------------------
+# texassemble.exe
+Microsoft (R) DirectX Texture Assembler (DirectXTex version)
+Copyright (C) Microsoft Corp. All rights reserved.
+
+Usage: texassemble <command> <options> <files>
+
+   cube                create cubemap
+   volume              create volume map
+   array               create texture array
+   cubearray           create cubemap array
+   h-cross or v-cross  create a cross image from a cubemap
+   h-strip or v-strip  create a strip image from a cubemap
+
+   -r                  wildcard filename search is recursive
+   -w <n>              width
+   -h <n>              height
+   -f <format>         format
+   -if <filter>        image filtering
+   -srgb{i|o}          sRGB {input, output}
+   -o <filename>       output filename
+   -y                  overwrite existing output file (if any)
+   -sepalpha           resize alpha channel separately from color channels
+   -wrap, -mirror      texture addressing mode (wrap, mirror, or clamp)
+   -alpha              convert premultiplied alpha to straight alpha
+   -dx10               Force use of 'DX10' extended header
+   -nologo             suppress copyright message
+
+   <format>: R32G32B32A32_FLOAT R32G32B32A32_UINT R32G32B32A32_SINT
+      R32G32B32_FLOAT R32G32B32_UINT R32G32B32_SINT R16G16B16A16_FLOAT
+      R16G16B16A16_UNORM R16G16B16A16_UINT R16G16B16A16_SNORM
+      R16G16B16A16_SINT R32G32_FLOAT R32G32_UINT R32G32_SINT
+      R10G10B10A2_UNORM R10G10B10A2_UINT R11G11B10_FLOAT R8G8B8A8_UNORM
+      R8G8B8A8_UNORM_SRGB R8G8B8A8_UINT R8G8B8A8_SNORM R8G8B8A8_SINT
+      R16G16_FLOAT R16G16_UNORM R16G16_UINT R16G16_SNORM R16G16_SINT
+      R32_FLOAT R32_UINT R32_SINT R8G8_UNORM R8G8_UINT R8G8_SNORM
+      R8G8_SINT R16_FLOAT R16_UNORM R16_UINT R16_SNORM R16_SINT
+      R8_UNORM R8_UINT R8_SNORM R8_SINT A8_UNORM R9G9B9E5_SHAREDEXP
+      R8G8_B8G8_UNORM G8R8_G8B8_UNORM B5G6R5_UNORM B5G5R5A1_UNORM
+      B8G8R8A8_UNORM B8G8R8X8_UNORM R10G10B10_XR_BIAS_A2_UNORM
+      B8G8R8A8_UNORM_SRGB B8G8R8X8_UNORM_SRGB AYUV Y410 Y416 YUY2 Y210
+      Y216 B4G4R4A4_UNORM
+
+   <filter>: POINT LINEAR CUBIC FANT BOX TRIANGLE POINT_DITHER
+      LINEAR_DITHER CUBIC_DITHER FANT_DITHER BOX_DITHER TRIANGLE_DITHER
+      POINT_DITHER_DIFFUSION LINEAR_DITHER_DIFFUSION CUBIC_DITHER_DIFFUSION
+      FANT_DITHER_DIFFUSION BOX_DITHER_DIFFUSION TRIANGLE_DITHER_DIFFUSION
+
+------------------------------------
+# Useful Batch Script
+Actually I've never used this. Good luck if you need it!
