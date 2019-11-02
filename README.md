@@ -1,26 +1,25 @@
 # DirectX Texture Converter 2017
- This is more or less just a backup of Microsoft's Texture Converter from 2017 that is needed by many games of the timeframe (DX9-DX12).
- I am not the author of these binaries, I am simply preserving them to aid modders in the modding of Space Engineers or any other games.
-
+<p>This is more or less just a backup of Microsoft's Texture Converter from 2017 that is needed by many games of the timeframe (DX9-DX12). I am not the author of these binaries, I am simply preserving them to aid modders in the modding of Space Engineers or any other games.
+<p>
 # Sources:
-The original github where they keep the most updated version is here:
-https://github.com/microsoft/DirectXTex/releases
-Related documentation on the most up-to-date version can be found here:
-https://github.com/Microsoft/DirectXTex/wiki/Texconv
-
-The primary backups (dated 2017-11-26) of texconv.exe and texassemble.exe came from Keen's Space Engineers directory in Steam:
-<img src="https://github.com/DranKof/DirectX-Texture-Converter-2017/blob/master/Finding%20TexConv.png">
-The primary backup (dated 2017-09-22) of texdiag.exe caome from here:
-https://github.com/microsoft/DirectXTex/releases/tag/sept2017
-The secondary backups (the ones I've tested the most, dated 2017-07-26) came from:
-https://github.com/microsoft/DirectXTex/releases/tag/jul2017
-
-My Guide on using this to make and edit DDS hud icons for Space Engineers is here:
-https://steamcommunity.com/sharedfiles/filedetails/?id=1116386590
-
+<p>The original github where they keep the most updated version is here:
+<p>https://github.com/microsoft/DirectXTex/releases
+<p><p>Related documentation on the most up-to-date version can be found here:
+<p>https://github.com/Microsoft/DirectXTex/wiki/Texconv
+<p>
+<p><p>The primary backups (dated 2017-11-26) of texconv.exe and texassemble.exe came from Keen's Space Engineers directory in Steam:
+<p><img src="https://github.com/DranKof/DirectX-Texture-Converter-2017/blob/master/Finding%20TexConv.png">
+<p><p>The primary backup (dated 2017-09-22) of texdiag.exe came from here:
+<p>https://github.com/microsoft/DirectXTex/releases/tag/sept2017
+<p><p>The secondary backups (the ones I've tested the most, dated 2017-07-26) came from:
+<p>https://github.com/microsoft/DirectXTex/releases/tag/jul2017
+<p>
+<p><p>My Guide on using this to make and edit DDS hud icons for Space Engineers is here:
+<p>https://steamcommunity.com/sharedfiles/filedetails/?id=1116386590
+<p>
 ------------------------------------
 # Syntax for texconv.exe
-
+```
 Microsoft (R) DirectX Texture Converter (DirectXTex version)
 Copyright (C) Microsoft Corp. All rights reserved.
 
@@ -109,15 +108,17 @@ Usage: texconv <options> <files>
       0: VID:10DE, PID:1B81 - NVIDIA GeForce GTX 1070
       1: VID:8086, PID:193B - Intel(R) Iris(R) Pro Graphics 580
       2: VID:1414, PID:008C - Microsoft Basic Render Driver
-
+```
 ------------------------------------
 # Useful Batch Script (convertTextures.bat)
+```
 texconv -f BC7_UNORM_SRGB -if LINEAR -sRGB -y -o TexturesOut -pmalpha Textures\*.dds
 ren TexturesOut\*.DDS *.dds
 pause
-
-------------------------------------
+```
+ ------------------------------------
 # texdiag.exe
+```
 Microsoft (R) DirectX Texture Diagnostic Tool
 Copyright (C) Microsoft Corp. All rights reserved.
 
@@ -169,16 +170,18 @@ Usage: texdiag <command> <options> <files>
       LINEAR_DITHER CUBIC_DITHER FANT_DITHER BOX_DITHER TRIANGLE_DITHER
       POINT_DITHER_DIFFUSION LINEAR_DITHER_DIFFUSION CUBIC_DITHER_DIFFUSION
       FANT_DITHER_DIFFUSION BOX_DITHER_DIFFUSION TRIANGLE_DITHER_DIFFUSION
-
+```
 ------------------------------------
 # Useful Batch Script (analyze.bat)
+```
 texdiag info *.dds
 texdiag info Textures\*.dds
 texdiag info TexturesOut\*.dds
 pause
-
+```
 ------------------------------------
 # texassemble.exe
+```
 Microsoft (R) DirectX Texture Assembler (DirectXTex version)
 Copyright (C) Microsoft Corp. All rights reserved.
 
@@ -224,7 +227,7 @@ Usage: texassemble <command> <options> <files>
       LINEAR_DITHER CUBIC_DITHER FANT_DITHER BOX_DITHER TRIANGLE_DITHER
       POINT_DITHER_DIFFUSION LINEAR_DITHER_DIFFUSION CUBIC_DITHER_DIFFUSION
       FANT_DITHER_DIFFUSION BOX_DITHER_DIFFUSION TRIANGLE_DITHER_DIFFUSION
-
+```
 ------------------------------------
 # Useful Batch Script
-Actually I've never used this. Good luck if you need it!
+<p>Actually I've never used this. Good luck if you need it!
